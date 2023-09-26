@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>AirGibt Crud</title>
+</head>
+<body>
+   
+    <div class="wrap" id="app">
+       
+        <h2>Iniciar sesión</h2>
+        <form action="">
+            <label for="username" >username</label>
+            <input type="text" id="username" placeholder="write here" v-model="username" id="username">
+            <label for="password">password</label>
+            <input type="password" id="password" placeholder="write here" v-model="password" id="password">
+            <button @click="login" type="button">Access</button>
+        </form>
+        
+        <table v-if="accedio">
+            <button id="btnAgregar" v-if="accedio" v-on:click="add">Add</button>
+            <tr class="header">
+                <td class="header__td">Nombre</td>
+                <td class="header__td">Usuario</td>
+                <td class="header__td">Email</td>
+                <td class="header__td">Phone</td>
+                <td class="header__td">Website</td>
+                <td class="header__td">Acciones</td>
+                
+            </tr>
+            <tr v-for="user in arrayUsers">
+                <td class="datos" :contenteditable="user.editable">{{ user.name }}</td>
+                <td class="datos" :contenteditable="user.editable">{{ user.username }}</td>
+                <td class="datos" :contenteditable="user.editable">{{ user.email }}</td>
+                <td class="datos" :ontenteditable="user.editable">{{ user.phone }} </td>
+                <td class="datos" :ontenteditable="user.editable">{{ user.website }} </td>
+                <td class="datos">
+                    <button id="btnEdit" v-on:click="edit">Editar</button>
+                    <button id="btnRemove" v-on:click="remove">Borrar</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <style>
+        input{
+            display: block;
+        }
+
+        td{
+            width: 420px;
+          background-color: rgb(0, 147, 197);
+          border: 2px solid rgba(0,0,0,0.2);
+          backdrop-filter: blur(20px);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+          color: rgb(0, 0, 0);
+       
+          padding: 30px 40px;
+        }
+
+        table{
+            border-collapse: collapse;
+        }
+
+        .header__td{
+            background-color: rgb(177, 177, 161);
+        }
+
+        .datos{
+            color: white;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                email: '',
+                username: '',
+                password: '',
+                number: '',
+                webs: '',
+                accedio: false,
+                arrayUsers: [],
+                role_id: 12
+            },
+            methods: {
+                login: async function(){
+                    //1.- traer los datos
+                    const response = await fetch("users.json");
+                    const users = await response.json();
+
+                    //2.- recorrer los datos
+                    users.forEach(user => {
+                        //3.- comprobar si el usuario existe
+                        if(this.username == user.name){
+                            if(this.password == user.password){
+                                alert('bienvenido '+user.name);
+                                this.accedio = true;
+                            }
+                        }
+
+                        this.arrayUsers.push(user);
+                    });
+
+                    if(!this.accedio){
+                        alert('Verifique su información');
+                    }
+                },
+                add: function() {
+                    const nombre=prompt("Ingresa el nombre");
+                    const apellido=prompt("Ingresa el apellido");
+                    const correo=prompt("Ingresa el email");
+                    const numero=prompt("Ingresa el telefono");
+                    const web=prompt("Ingresa el sitio web");
+
+                    const usuario = {
+                        name: nombre,
+                        lastname: apellido,
+                        email: correo,
+                        numero: cel,
+                        web: website,
+                        role_id: this.role_id+=1
+                    }
+
+                    this.arrayUsers.push(usuario);
+                },
+                remove: function(){
+                    const DeleteUser = parseInt(prompt('Ingresa el id del usuario para borrar'));
+
+                    if(DeleteUser < 0 || DeleteUser > this.arrayUsers[this.arrayUsers.length-1].role_id){
+                        alert(`El id ${DeleteUser} no existe`);
+                    } else {
+                        
+                        const index = this.arrayUsers.findIndex(user => user.role_id === DeleteUser);
+
+                        
+                        this.arrayUsers.splice(index, 1);
+                    }
+                },
+                edit: function(){
+                    const EditUser = parseInt(prompt('Ingresa el id del usuario a editar'));
+
+                    if(EditUser < 0 || EditUser > this.arrayUsers[this.arrayUsers.length-1].role_id){
+                        alert(`El id ${EditUser} no existe`);
+                    } else {
+                       
+                        const index = this.arrayUsers.findIndex(user => user.role_id === EditUser);
+
+                        this.arrayUsers.forEach((user, indice) => {
+                            if(indice === index){
+                                user.editable = !user.editable;
+                            }
+                        });
+                    }
+                }
+            }
+        });
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+[
+  {
+      "name": "ricardo",
+      "username": "user1",
+      "email": "giberttoledor@gmail.com",
+      "password": "1234",
+      "phone":"6121432233",
+      "website":"rickylimon.com",
+      "role_id": 1,
+      "avatar": "",
+      "editable": false
+  },
+  {
+      "name": "Isabel",
+      "username": "IssyCst",
+      "email": "MiCc@gmail.com",
+      "password": "1234",
+      "phone":"6121432233",
+      "website":"Teacher.com",
+      "role_id": 2,
+      "avatar": "",
+      "editable": false
+  },
+  {
+      "name": "Javier",
+      "username": "Romerito07",
+      "email": "JavRo@uabcs.mx",
+      "password": "1234",
+      "phone":"6121432233",
+      "website":"Javs.com",
+      "role_id": 3,
+      "avatar": "",
+      "editable": false
+  },
+  {
+      "name": "María",
+      "username": "Mechi22",
+      "email": "maria@uabcs.mx",
+      "password": "1234",
+      "phone":"6121432233",
+      "website":"rickylimon.com",
+      "role_id": 4,
+      "avatar": "",
+      "editable": false
+  },
+  {
+      "name": "Carlos",
+      "username": "Pollos22",
+      "email": "carloss@uabcs.mx",
+      "password": "1234",
+      "phone":"6121432233",
+      "website":"rickylimon.com",
+      "role_id": 5,
+      "avatar": "",
+      "editable": false
+  },
+  {
+      "name": "Nestor",
+      "username": "NFspeed",
+      "email": "anamtz@uabcs.mx",
+      "password": "1234",
+      "phone":"6121432233",
+      "website":"rickylimon.com",
+      "role_id": 6,
+      "avatar": "",
+      "editable": false
+  },
+  {
+      "name": "Jose",
+      "username": "Davis",
+      "email": "luisl@uabcs.mx",
+      "password": "1234",
+      "phone":"6121432233",
+      "website":"rickylimon.com",
+      "role_id": 7,
+      "avatar": "",
+      "editable": false
+  }
+ 
+]
